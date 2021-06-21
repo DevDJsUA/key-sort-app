@@ -25,7 +25,7 @@ import unittest
 import numpy as np
 import numpy.testing as npt
 
-import pyACA
+import djPyACA
 
 # Initialize this according to the path on your system:
 path_to_matlab_code = '/Users/kaushal/Kaushal/Repositories/ACA-Code'
@@ -66,9 +66,9 @@ class TestFeaturesWithMatlab(unittest.TestCase):
         x_py = np.random.uniform(-1, 1, size=(fs//2, 1))  # 0.5 sec
         x_m = matlab.double(x_py.tolist())
 
-        for feature in pyACA.getFeatureList():
+        for feature in djPyACA.getFeatureList():
             self.logger.info('Testing feature:' + feature)
-            v_out_py, t_py = pyACA.computeFeature(feature, x_py, fs)
+            v_out_py, t_py = djPyACA.computeFeature(feature, x_py, fs)
             # Note: fs must be float when passing to Matlab
             v_out_m, t_m = self.matlab_engine.ComputeFeature(feature, x_m, float(fs), nargout=2)
 
@@ -90,7 +90,7 @@ class TestFeaturesWithMatlab(unittest.TestCase):
         x_m = matlab.double(x_py.tolist())
 
         self.logger.info('Testing computeMelSpectrogram')
-        M_py, fc_py, t_py = pyACA.computeMelSpectrogram(x_py, fs)
+        M_py, fc_py, t_py = djPyACA.computeMelSpectrogram(x_py, fs)
         M_m, fc_m, t_m = self.matlab_engine.ComputeMelSpectrogram(x_m, float(fs), nargout=3)
 
         M_py = M_py.squeeze()

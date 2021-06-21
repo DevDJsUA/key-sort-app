@@ -9,8 +9,8 @@
     </SearchPath>
     <WorkingDirectory>.</WorkingDirectory>
     <OutputPath>.</OutputPath>
-    <Name>pyACA</Name>
-    <RootNamespace>pyACA</RootNamespace>
+    <Name>djPyACA</Name>
+    <RootNamespace>djPyACA</RootNamespace>
     <TestFramework>unittest</TestFramework>
     <UnitTestPattern>test*.py</UnitTestPattern>
     <UnitTestRootDirectory>.</UnitTestRootDirectory>

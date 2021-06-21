@@ -17,10 +17,10 @@ computes the musical key of an input audio file
 import numpy as np
 from scipy.signal import spectrogram
 
-from pyACA.ToolComputeHann import ToolComputeHann
-from pyACA.FeatureSpectralPitchChroma import FeatureSpectralPitchChroma
-from pyACA.ToolPreprocAudio import ToolPreprocAudio
-from pyACA.ToolReadAudio import ToolReadAudio
+from djPyACA.ToolComputeHann import ToolComputeHann
+from djPyACA.FeatureSpectralPitchChroma import FeatureSpectralPitchChroma
+from djPyACA.ToolPreprocAudio import ToolPreprocAudio
+from djPyACA.ToolReadAudio import ToolReadAudio
 
 def computeKey(afAudioData, f_s, afWindow=None, iBlockLength=4096, iHopLength=2048):
 
@@ -31,8 +31,9 @@ def computeKey(afAudioData, f_s, afWindow=None, iBlockLength=4096, iHopLength=20
     assert(afWindow.shape[0] == iBlockLength), "parameter error: invalid window dimension"
 
     # key names
-    cKeyNames = np.array(['C Maj', 'C# Maj', 'D Maj', 'D# Maj', 'E Maj', 'F Maj', 'F# Maj', 'G Maj', 'G# Maj', 'A Maj', 'A# Maj', 'B Maj',
-                         'c min', 'c# min', 'd min', 'd# min', 'e min', 'f min', 'f# min', 'g min', 'g# min', 'a min', 'a# min', 'b min'])
+    # cKeyNames = np.array(['C Maj', 'C# Maj', 'D Maj', 'D# Maj', 'E Maj', 'F Maj', 'F# Maj', 'G Maj', 'G# Maj', 'A Maj', 'A# Maj', 'B Maj',
+    #                      'c min', 'c# min', 'd min', 'd# min', 'e min', 'f min', 'f# min', 'g min', 'g# min', 'a min', 'a# min', 'b min'])
+    cKeyNames = np.array(['8B', '3B','10B','5B','12B','7B','2B','9B','4B','11B','6B','1B','5A','12A','7A','2A','9A','4A','11A','6A', '1A', '8A', '3A', '10A' ])
 
     # template pitch chroma (Krumhansl major/minor), normalized to a sum of 1
     t_pc = np.array([[6.35, 2.23, 3.48, 2.33, 4.38, 4.09, 2.52, 5.19, 2.39, 3.66, 2.29, 2.88],
