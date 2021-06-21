@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 from typing import Any
-import pyACA 
+import pyACA
 import librosa
 import configparser
 

@@ -1,4 +1,6 @@
 #
+from os import name
+
 name = "pyACA"
 from .computeBeatHisto import computeBeatHisto
 from .computeFeature import computeFeature
