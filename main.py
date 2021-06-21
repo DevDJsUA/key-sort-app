@@ -4,6 +4,7 @@ import os
 
 directory = "./audio"
 files = os.listdir(directory)
+keys = []
 
 dict = {'C Maj':'8B','C# Maj':'3B','D Maj':'10B','D# Maj':'5B','E Maj':'12B','F Maj':'7B','F# Maj':'2B','G Maj':'9B','G# Maj':'4B','A Maj':'11B','A# Maj':'6B','B Maj':'1B','c min':'5A','c# min':'12A','d min':'7A','d# min':'2A','e min':'9A','f min':'4A','f# min':'11A','g min':'6A','g# min':'1A','a min':'8A','a# min':'3A','b min':'10A'}
 
@@ -16,7 +17,12 @@ for i in range(len(files)):
     if format == 'mp3' or format == 'wav':
         path = directory + '/' + trackName
         key = KeyDetect.keyDetect(path)
-        print(dict[key] + ' ' + key + '' + trackName)
+        keys.append(dict[key])
+
+for i in range(len(keys)):
+    print(f"{files[i]} / {keys[i]}")
+
+
 
 
 
