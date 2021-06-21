@@ -1,1 +1,3 @@
-print("hi!")
+hi = "hi"
+
+print(hi)
