@@ -26,8 +26,8 @@
     <Compile Include="test_features.py" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\djPyACA\djPyACA.pyproj">
-      <Name>djPyACA</Name>
+    <ProjectReference Include="..\pyACA\pyACA.pyproj">
+      <Name>pyACA</Name>
       <Project>{bde0068b-42b7-4ee2-ac46-63598af50a90}</Project>
       <Private>True</Private>
     </ProjectReference>

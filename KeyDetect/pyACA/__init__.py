@@ -1,7 +1,7 @@
 #
 from os import name
 
-name = "djPyACA"
+name = "pyACA"
 from .computeBeatHisto import computeBeatHisto
 from .computeFeature import computeFeature
 from .computeKey import computeKey

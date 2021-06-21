@@ -17,10 +17,10 @@ computes the musical key of an input audio file
 import numpy as np
 from scipy.signal import spectrogram
 
-from djPyACA.ToolComputeHann import ToolComputeHann
-from djPyACA.FeatureSpectralPitchChroma import FeatureSpectralPitchChroma
-from djPyACA.ToolPreprocAudio import ToolPreprocAudio
-from djPyACA.ToolReadAudio import ToolReadAudio
+from pyACA.ToolComputeHann import ToolComputeHann
+from pyACA.FeatureSpectralPitchChroma import FeatureSpectralPitchChroma
+from pyACA.ToolPreprocAudio import ToolPreprocAudio
+from pyACA.ToolReadAudio import ToolReadAudio
 
 def computeKey(afAudioData, f_s, afWindow=None, iBlockLength=4096, iHopLength=2048):
 

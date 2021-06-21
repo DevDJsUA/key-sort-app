@@ -2,7 +2,7 @@ import unittest
 import numpy as np
 import numpy.testing as npt
 
-import djPyACA
+import pyACA
 
 
 class TestShape(unittest.TestCase):
@@ -16,9 +16,9 @@ class TestShape(unittest.TestCase):
         for inputSize in range(1, 2*blockLength):
             x = inputData[:inputSize]
             expectedNumBlocks = self.calcNumBlocks(x.size+blockLength, blockLength, hopLength)
-            for feature in djPyACA.getFeatureList('all'):
+            for feature in pyACA.getFeatureList('all'):
                 with self.subTest(msg=feature + ':' + str(inputSize)):
-                    out, t = djPyACA.computeFeature(feature, x, fs, iBlockLength=blockLength, iHopLength=hopLength)
+                    out, t = pyACA.computeFeature(feature, x, fs, iBlockLength=blockLength, iHopLength=hopLength)
                     npt.assert_equal(out.shape[-1], expectedNumBlocks)
 
 
@@ -26,28 +26,28 @@ class TestShape(unittest.TestCase):
         fs = 44100
         X = np.zeros(1025)
 
-        features = djPyACA.getFeatureList('spectral')
+        features = pyACA.getFeatureList('spectral')
         features.remove('SpectralMfccs')
         features.remove('SpectralPitchChroma')
 
         for feature in features:
             with self.subTest(msg=feature):
-                featureFunc = getattr(djPyACA, "Feature" + feature)
+                featureFunc = getattr(pyACA, "Feature" + feature)
                 out = featureFunc(X, fs)
                 npt.assert_equal(out.shape, ())
 
         with self.subTest(msg='SpectralMfccs'):
-            out = djPyACA.FeatureSpectralMfccs(X, fs)
+            out = pyACA.FeatureSpectralMfccs(X, fs)
             npt.assert_equal(out.shape, (13,))
 
         with self.subTest(msg='SpectralPitchChroma'):
-            out = djPyACA.FeatureSpectralPitchChroma(X, fs)
+            out = pyACA.FeatureSpectralPitchChroma(X, fs)
             npt.assert_equal(out.shape, (12,))
 
 
     def test_spectral_features_for_2d_input(self):
         fs = 44100
-        features = djPyACA.getFeatureList('spectral')
+        features = pyACA.getFeatureList('spectral')
         features.remove('SpectralMfccs')
         features.remove('SpectralPitchChroma')
 
@@ -56,16 +56,16 @@ class TestShape(unittest.TestCase):
 
         for feature in features:
             with self.subTest(msg=feature):
-                featureFunc = getattr(djPyACA, "Feature" + feature)
+                featureFunc = getattr(pyACA, "Feature" + feature)
                 out = featureFunc(X, fs)
                 npt.assert_equal(out.shape, (1,))
 
         with self.subTest(msg='SpectralMfccs'):
-            out = djPyACA.FeatureSpectralMfccs(X, fs)
+            out = pyACA.FeatureSpectralMfccs(X, fs)
             npt.assert_equal(out.shape, (13, 1))
 
         with self.subTest(msg='SpectralPitchChroma'):
-            out = djPyACA.FeatureSpectralPitchChroma(X, fs)
+            out = pyACA.FeatureSpectralPitchChroma(X, fs)
             npt.assert_equal(out.shape, (12, 1))
 
         # Test for 2d input with only multiple block
@@ -73,16 +73,16 @@ class TestShape(unittest.TestCase):
 
         for feature in features:
             with self.subTest(msg=feature):
-                featureFunc = getattr(djPyACA, "Feature" + feature)
+                featureFunc = getattr(pyACA, "Feature" + feature)
                 out = featureFunc(X, fs)
                 npt.assert_equal(out.shape, (16,))
 
         with self.subTest(msg='SpectralMfccs'):
-            out = djPyACA.FeatureSpectralMfccs(X, fs)
+            out = pyACA.FeatureSpectralMfccs(X, fs)
             npt.assert_equal(out.shape, (13, 16))
 
         with self.subTest(msg='SpectralPitchChroma'):
-            out = djPyACA.FeatureSpectralPitchChroma(X, fs)
+            out = pyACA.FeatureSpectralPitchChroma(X, fs)
             npt.assert_equal(out.shape, (12, 16))
 
 
