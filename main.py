@@ -3,7 +3,7 @@ import KeyDetect
 
 engKey = ['C Maj', 'C# Maj', 'D Maj', 'D# Maj', 'E Maj', 'F Maj', 'F# Maj', 'G Maj', 'G# Maj', 'A Maj', 'A# Maj', 'B Maj','c min', 'c# min', 'd min', 'd# min', 'e min', 'f min', 'f# min', 'g min', 'g# min', 'a min', 'a# min', 'b min']
 
-altKey = ['8b', '','10b','','12b','7b','2b','9b','','11b','','1b','5a','','7a','','9a','4a','11a','6a', '', '8a', '', '10a' ]
+altKey = ['8B', '3B','10B','5B','12B','7B','2B','9B','4B','11B','6B','1B','5A','12A','7A','2A','9A','4A','11A','6A', '1A', '8A', '3A', '10A' ]
 
 # key = KeyDetect.keyDetect("test2.mp3")
 # print(key)
