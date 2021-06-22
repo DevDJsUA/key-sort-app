@@ -1,0 +1,27 @@
+https://www.allfordj.ru/news/sovety_i_gidy/tekhniki_garmonicheskogo_svedeniya_dlya_didzheev/
+
+camelot sort algorithm
+
+0. Detect tracks key                    //7A
+1. Base mixing           
+    1.1 same key  
+       same number + same letter        //7A
+    1.2 adjacent keys             
+       base number +1 + same letter     //8A
+       base number -1 + same letter     //6A
+       base number + change letter      //7B
+2. Transition from minor/major 
+    2.1 major to minor
+       base number -3 + change letter   //7B->4A
+    2.2 minor to major
+       base number +3 + change letter   //10B
+       base number -3 + change letter   //4B  !!check
+3. Emotional lift
+    3.1 one full tone shift
+       base number +2 + same letter     //9A
+       base number -2 + same letter     //5A
+    3.2 one semitone (half tone) rise
+       base number +7 + same letter     //2A
+4. Diagonal camelot mixing  
+    4.1 base number +1 + change letter  //8B
+       base number -1 + change letter   //6B
