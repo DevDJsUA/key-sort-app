@@ -2,46 +2,53 @@ import KeyDetect
 import os
 from classes.track import Track
 
-directory = "./audio"
-files = os.listdir(directory)
-if '.DS_Store' in files:
-    files.remove('.DS_Store')
+
 
 keys = []
 tracks = []
-
-
-
-
 dict = {'C Maj':'8B','C# Maj':'3B','D Maj':'10B','D# Maj':'5B','E Maj':'12B','F Maj':'7B','F# Maj':'2B','G Maj':'9B','G# Maj':'4B','A Maj':'11B','A# Maj':'6B','B Maj':'1B','c min':'5A','c# min':'12A','d min':'7A','d# min':'2A','e min':'9A','f min':'4A','f# min':'11A','g min':'6A','g# min':'1A','a min':'8A','a# min':'3A','b min':'10A'}
 
-print(f"\n{files}")
 
-for i in range(len(files)):
-    trackName = files[i]
-    trackNames = trackName.split('.')
+
+
+def initTracks(directory):
+    files = os.listdir(directory)
+    if '.DS_Store' in files:
+        files.remove('.DS_Store')
     
+    tracks = []
 
-    format = trackNames[-1]
-    if format == 'mp3' or format == 'wav':
-        path = directory + '/' + trackName
-        print(f"\n{files.index(trackName)} {trackName} key detecting started")
-        key = KeyDetect.keyDetect(path)
-        keys.append(dict[key])
-        _track = Track(i, trackName, path, key)
-        tracks.append(_track)
-        print(f"key: {dict[key]}")
-    print("\n")
+    for i in range(len(files)):
+        trackName = files[i]
+        trackNames = trackName.split('.')
+        
 
-# print(f"\n{files}\n{keys}\n")
-print(tracks)
+        format = trackNames[-1]
+        if format == 'mp3' or format == 'wav':
+            path = directory + '/' + trackName
+            key = KeyDetect.keyDetect(path)
+            keys.append(dict[key])
+            _track = Track(i, trackName, path, dict[key])
+            tracks.append(_track)
 
-for track in tracks:
-    for i in range(10):
-        print("-", end=" ")
-    print(f"{track.id}\n{track.name}\n{track.src}\n{track.key}")
+    return tracks
+
+def printTracks(tracks):
+    for track in tracks:
+        for i in range(10):
+            print("-", end=" ")
+        print(f"\n{track.getId()}\n{track.getName()}\n{track.getSrc()}\n{track.getKey()}")
+
+def sortTracks(directory):
+    tracks = initTracks(directory)
+    printTracks(tracks)
 
 
+
+
+
+
+sortTracks("./audio")
 '''
 
 1A: A Flat Minor Abm / G#m / G#
