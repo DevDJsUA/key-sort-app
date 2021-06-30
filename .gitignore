@@ -2,3 +2,4 @@
 *.wav
 /env
 /audio
+/__pycache__
