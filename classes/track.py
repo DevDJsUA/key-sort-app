@@ -3,12 +3,17 @@ import os
 name = "track"
 
 class Track:
-    id = 0
-    name = ""
-    src = ""
-    key = ""
-    def __init__(self, _id, _name, _src, _key):
-        self.id = _id
-        self.name = _name
-        self.src = _src,
-        self.key = _key
+    def __init__(self, id, name, src, key):
+        self._id = id
+        self._name = name
+        self._src = src
+        self._key = key
+    
+    def getId(self):
+        return self._id
+    def getName(self):
+        return self._name
+    def getSrc(self):
+        return self._src
+    def getKey(self):
+        return self._key
