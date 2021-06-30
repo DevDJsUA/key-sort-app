@@ -1,0 +1,1 @@
+movements = {'Perfectmatch': 35, 'Energyboost': 10, 'Energydrop': 10,'Energyswitch': 10, 'Moodboost': 5, 'Mooddrop': 5, 'Energyraise': 5, 'Domkey': 10, 'Subdomkey': 10 } 

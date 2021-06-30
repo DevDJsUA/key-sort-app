@@ -1,26 +1,21 @@
+from typing import Pattern
 import KeyDetect
 import os
 from random import randint
+from classes.movements import movements
 
 from classes.track import Track
 from classes.checkMixing import CheckMixing
+from classes.createHarmonicMixingPattern import createHarmonicMixingPattern
+
+cr = createHarmonicMixingPattern()
 
 
 
 keys = []
 tracks = []
 dict = {'C Maj':'8B','C# Maj':'3B','D Maj':'10B','D# Maj':'5B','E Maj':'12B','F Maj':'7B','F# Maj':'2B','G Maj':'9B','G# Maj':'4B','A Maj':'11B','A# Maj':'6B','B Maj':'1B','c min':'5A','c# min':'12A','d min':'7A','d# min':'2A','e min':'9A','f min':'4A','f# min':'11A','g min':'6A','g# min':'1A','a min':'8A','a# min':'3A','b min':'10A'}
-class Movements:
-    perfectMatch = 35  # perfectMatch (=)
-    energyBoost = 10  # energyBoost (+1)
-    energyDrop = 10  # energyDrop (-1)
-    energySwitch= 10  # energySwitch (B/A)
-    moodBoost = 5  # moodBoost (+3)
-    moodDrop = 5  # moodDrop (-3)
-    energyRaise = 5  # energyRaise (+7)
-    domKey = 10  # domKey (+1 & B/A) = energyBoost & energySwitch
-    subDomKey = 10  # subDomKey (-1 & B/A) = energyDrop & energySwitch
-movements = Movements()
+
 checkMixing = CheckMixing()
 
 def initTracks(directory):
@@ -68,28 +63,69 @@ def sortTracks(tracks):
     allTracks = tracks
     oldTracks = tracks
     newTracks = []
+    patterns = cr.createHarmonicMixingPattern(len(allTracks)) 
+
+    newTracks.append(oldTracks[0])
+    oldTracks.remove(oldTracks[0])
+
+    i = 0
+    no = 0
+    while i < len(oldTracks) and no < 1000:
+        if(len(oldTracks) == 0):
+            print("shuyali?")
+            return [newTracks, oldTracks]
+        
+        newTrack = oldTracks[i]
+        _movements = []
+        for j in movements:
+            _movements.append(j.title())
+        if checkMixing.checkMix(newTracks[-1].getKey(), newTrack.getKey(), _movements.index(patterns[i])) == True:
+            newTracks.append(oldTracks[i])
+            oldTracks.remove(oldTracks[i])
+            i = 0
+        else:
+            no += 1
+
+
+        i += 1
+    return [newTracks, oldTracks]
+
+def _sortTracks(tracks):
+    allTracks = tracks
+    oldTracks = tracks
+    newTracks = []
+    patterns = cr.createHarmonicMixingPattern(len(allTracks)) 
 
     newTracks.append(oldTracks[0])
     oldTracks.remove(oldTracks[0])
 
     no = 0
+    i = 0
     while len(oldTracks) > 0 and no < 500:
-        rand = randint(0, len(oldTracks) -1)
         if(len(oldTracks) == 1):
-            rand = 0
+            i = 0
         if(len(oldTracks) == 0):
             print("shuyali?")
             return
-
-        newTrack = oldTracks[rand]
+        
+        
+        
+        newTrack = oldTracks[i]
+        _movements = []
+        for j in movements:
+            _movements.append(j.title())
         # print(checkMixing.checkMix(newTracks[-1].getKey()))
         # print( newTrack.getKey() )
-        if checkMixing.checkMix(newTracks[-1].getKey(), newTrack.getKey()) == True:
-            newTracks.append(oldTracks[rand])
-            oldTracks.remove(oldTracks[rand])
+        if checkMixing.checkMix(newTracks[-1].getKey(), newTrack.getKey(), _movements.index(patterns[i])) == True:
+            newTracks.append(oldTracks[i])
+            oldTracks.remove(oldTracks[i])
         else:
             print('no')
             no += 1
+        i += 1
+        if(i >= len(oldTracks)):
+            i = 0
+        
     return [newTracks, oldTracks]
 
 def getSortTracks(directory):
@@ -105,6 +141,7 @@ def getSortTracks(directory):
     
 
 
+
 # def testSort():
 #     checkMixing.checkMix("10A", "10A")
 #     checkMixing.checkMix("10A", "10B")
@@ -114,8 +151,8 @@ def getSortTracks(directory):
 #     checkMixing.checkMix("10A", "6A")
 
 
-
 getSortTracks("./audio")
+
 # testSort()
 '''
 

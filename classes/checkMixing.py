@@ -1,5 +1,5 @@
 class CheckMixing:
-    def checkMix(self, oldKey, newKey = "1A"):
+    def checkMix(self, oldKey, newKey = "1A", patternId = -1):
         key = Key(oldKey)
 
         '''
@@ -15,24 +15,24 @@ class CheckMixing:
         print("----------")
         '''
 
-
-        if self.perfectMatch(key).toString() == newKey:
+        print(f"{oldKey} {patternId} {newKey}")
+        if self.perfectMatch(key).toString() == newKey and (patternId == -1 or patternId == 0):
             return True
-        if self.energyBoost(key).toString() == newKey:
+        if self.energyBoost(key).toString() == newKey and (patternId == -1 or patternId == 1):
             return True
-        if self.energyDrop(key).toString() == newKey:
+        if self.energyDrop(key).toString() == newKey and (patternId == -1 or patternId == 2):
             return True
-        if self.energySwitch(key).toString() == newKey:
+        if self.energySwitch(key).toString() == newKey and (patternId == -1 or patternId == 3):
             return True
-        if self.moodBoost(key).toString() == newKey:
+        if self.moodBoost(key).toString() == newKey and (patternId == -1 or patternId == 4):
             return True
-        if self.moodDrop(key).toString() == newKey:
+        if self.moodDrop(key).toString() == newKey and (patternId == -1 or patternId == 5):
             return True
-        if self.domKey(key).toString() == newKey:
+        if self.domKey(key).toString() == newKey and (patternId == -1 or patternId == 6):
             return True
-        if self.subDomKey(key).toString() == newKey:
+        if self.subDomKey(key).toString() == newKey and (patternId == -1 or patternId == 7):
             return True
-        if self.energyRaise(key).toString() == newKey:
+        if self.energyRaise(key).toString() == newKey and (patternId == -1 or patternId == 8):
             return True
         return False
 
@@ -96,3 +96,5 @@ class Key:
         self.letter = oldKey[-1]
     def toString(self):
         return f"{self.hour}{self.letter}"
+
+
