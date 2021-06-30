@@ -38,9 +38,12 @@ def printTracks(tracks):
         for i in range(10):
             print("-", end=" ")
         print(f"\n{track.getId()}\n{track.getName()}\n{track.getSrc()}\n{track.getKey()}")
-
+def hardcodeTracks():
+    print()
+    
 def sortTracks(directory):
-    tracks = initTracks(directory)
+    # tracks = initTracks(directory)
+    tracks = hardcodeTracks()
     printTracks(tracks)
 
 
