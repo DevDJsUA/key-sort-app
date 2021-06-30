@@ -7,9 +7,17 @@ from classes.track import Track
 keys = []
 tracks = []
 dict = {'C Maj':'8B','C# Maj':'3B','D Maj':'10B','D# Maj':'5B','E Maj':'12B','F Maj':'7B','F# Maj':'2B','G Maj':'9B','G# Maj':'4B','A Maj':'11B','A# Maj':'6B','B Maj':'1B','c min':'5A','c# min':'12A','d min':'7A','d# min':'2A','e min':'9A','f min':'4A','f# min':'11A','g min':'6A','g# min':'1A','a min':'8A','a# min':'3A','b min':'10A'}
-
-
-
+class Movements:
+    perfectMatch = 35  # perfectMatch (=)
+    energyBoost = 10  # energyBoost (+1)
+    energyDrop = 10  # energyDrop (-1)
+    energySwitch= 10  # energySwitch (B/A)
+    moodBoost = 5  # moodBoost (+3)
+    moodDrop = 5  # moodDrop (-3)
+    energyRaise = 5  # energyRaise (+7)
+    domKey = 10  # domKey (+1 & B/A) = energyBoost & energySwitch
+    subDomKey = 10  # subDomKey (-1 & B/A) = energyDrop & energySwitch
+movements = Movements()
 
 def initTracks(directory):
     files = os.listdir(directory)
@@ -39,12 +47,25 @@ def printTracks(tracks):
             print("-", end=" ")
         print(f"\n{track.getId()}\n{track.getName()}\n{track.getSrc()}\n{track.getKey()}")
 def hardcodeTracks():
-    print()
+    _track1 = Track(0,"track 0", "/track0", "10B")
+    _track2 = Track(1,"track 1", "/track1", "9B")
+    _track3 = Track(2,"track 2", "/track2", "8A")
+    _track4 = Track(3,"track 3", "/track3", "4B")
+    _track5 = Track(4,"track 4", "/track4", "6A")
+    _track6 = Track(5,"track 5", "/track5", "1B")
+    _track7 = Track(6,"track 6", "/track6", "7A")
+    _track8 = Track(7,"track 7", "/track7", "8B")
+    _track9 = Track(8,"track 8", "/track8", "12A")
+
+    tracks = [_track1, _track2, _track3, _track4, _track5, _track6, _track7, _track8, _track9]
+    return tracks
+
     
 def sortTracks(directory):
     # tracks = initTracks(directory)
     tracks = hardcodeTracks()
     printTracks(tracks)
+
 
 
 
