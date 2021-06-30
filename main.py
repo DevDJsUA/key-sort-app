@@ -1,6 +1,9 @@
 import KeyDetect
 import os
+from random import randint
+
 from classes.track import Track
+from classes.checkMixing import CheckMixing
 
 
 
@@ -18,6 +21,7 @@ class Movements:
     domKey = 10  # domKey (+1 & B/A) = energyBoost & energySwitch
     subDomKey = 10  # subDomKey (-1 & B/A) = energyDrop & energySwitch
 movements = Movements()
+checkMixing = CheckMixing()
 
 def initTracks(directory):
     files = os.listdir(directory)
@@ -48,10 +52,10 @@ def printTracks(tracks):
         print(f"\n{track.getId()}\n{track.getName()}\n{track.getSrc()}\n{track.getKey()}")
 def hardcodeTracks():
     _track1 = Track(0,"track 0", "/track0", "10B")
-    _track2 = Track(1,"track 1", "/track1", "9B")
-    _track3 = Track(2,"track 2", "/track2", "8A")
+    _track2 = Track(1,"track 1", "/track1", "10B")
+    _track3 = Track(2,"track 2", "/track2", "9A")
     _track4 = Track(3,"track 3", "/track3", "4B")
-    _track5 = Track(4,"track 4", "/track4", "6A")
+    _track5 = Track(4,"track 4", "/track4", "10A")
     _track6 = Track(5,"track 5", "/track5", "1B")
     _track7 = Track(6,"track 6", "/track6", "7A")
     _track8 = Track(7,"track 7", "/track7", "8B")
@@ -60,19 +64,59 @@ def hardcodeTracks():
     tracks = [_track1, _track2, _track3, _track4, _track5, _track6, _track7, _track8, _track9]
     return tracks
 
-    
-def sortTracks(directory):
+def sortTracks(tracks):
+    allTracks = tracks
+    oldTracks = tracks
+    newTracks = []
+
+    newTracks.append(oldTracks[0])
+    oldTracks.remove(oldTracks[0])
+
+    no = 0
+    while len(oldTracks) > 0 and no < 500:
+        rand = randint(0, len(oldTracks) -1)
+        if(len(oldTracks) == 1):
+            rand = 0
+        if(len(oldTracks) == 0):
+            print("shuyali?")
+            return
+
+        newTrack = oldTracks[rand]
+        # print(checkMixing.checkMix(newTracks[-1].getKey()))
+        # print( newTrack.getKey() )
+        if checkMixing.checkMix(newTracks[-1].getKey(), newTrack.getKey()) == True:
+            newTracks.append(oldTracks[rand])
+            oldTracks.remove(oldTracks[rand])
+        else:
+            print('no')
+            no += 1
+    return [newTracks, oldTracks]
+
+def getSortTracks(directory):
     # tracks = initTracks(directory)
     tracks = hardcodeTracks()
     printTracks(tracks)
+    [sortedTracks, unsortedTracks] = sortTracks(tracks)
+    print("sorted:")
+    printTracks(sortedTracks)
+    
+    print("unsorted:")
+    printTracks(unsortedTracks)
+    
+
+
+# def testSort():
+#     checkMixing.checkMix("10A", "10A")
+#     checkMixing.checkMix("10A", "10B")
+#     checkMixing.checkMix("10A", "9A")
+#     checkMixing.checkMix("10A", "8A")
+#     checkMixing.checkMix("10A", "7A")
+#     checkMixing.checkMix("10A", "6A")
 
 
 
-
-
-
-
-sortTracks("./audio")
+getSortTracks("./audio")
+# testSort()
 '''
 
 1A: A Flat Minor Abm / G#m / G#
