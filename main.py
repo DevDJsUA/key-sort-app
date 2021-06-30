@@ -29,15 +29,17 @@ for i in range(len(files)):
         key = KeyDetect.keyDetect(path)
         keys.append(dict[key])
         _track = Track(i, trackName, path, key)
-        tracks.append()
+        tracks.append(_track)
         print(f"key: {dict[key]}")
     print("\n")
 
 # print(f"\n{files}\n{keys}\n")
 print(tracks)
 
-for i in range(len(keys)):
-    print(f"{files[i]}  {keys[i]}")
+for track in tracks:
+    for i in range(10):
+        print("-", end=" ")
+    print(f"{track.id}\n{track.name}\n{track.src}\n{track.key}")
 
 
 '''
