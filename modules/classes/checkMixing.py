@@ -1,3 +1,5 @@
+from modules.classes.track import Track
+
 class CheckMixing:
     def checkMix(self, oldKey, newKey = "1A", patternId = -1):
         key = Key(oldKey)
@@ -15,7 +17,6 @@ class CheckMixing:
         print("----------")
         '''
 
-        print(f"{oldKey} {patternId} {newKey}")
         if self.perfectMatch(key).toString() == newKey and (patternId == -1 or patternId == 0):
             return True
         if self.energyBoost(key).toString() == newKey and (patternId == -1 or patternId == 1):
@@ -89,7 +90,10 @@ class Key:
     #     self.hour = _hour
     #     self.letter = _letter
 
-    def __init__(self, oldKey):
+    def __init__(self, _oldKey):
+        oldKey = _oldKey
+        if type(_oldKey) is object:
+            oldKey = _oldKey.getKey()
         self.hour = int(oldKey[0])
         if len(oldKey) == 3:
             self.hour = int(f"{oldKey[0]}{oldKey[1]}")

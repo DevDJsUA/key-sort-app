@@ -1,6 +1,6 @@
 from modules.classes.createHarmonicMixingPattern import createHarmonicMixingPattern
-from ...modules.classes.movements import movements
-from ...modules.classes.checkMixing import CheckMixing
+from modules.classes.movements import movements
+from modules.classes.checkMixing import CheckMixing
 
 checkMixing = CheckMixing()
 

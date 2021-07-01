@@ -1,5 +1,7 @@
-from ...KeyDetect import keyDetect
+# from ...KeyDetect.keyDetect import 
+from modules.KeyDetect.keyDetect import keyDetect
 from ..classes.track import Track
+from modules.sorts.keyDict import keyDict
 
 import os
 
@@ -20,7 +22,7 @@ def initTracks(directory):
             path = directory + '/' + trackName
             key = keyDetect(path)
             # keys.append(dict[key])
-            _track = Track(i, trackName, path, dict[key])
+            _track = Track(i, trackName, path, keyDict[key])
             tracks.append(_track)
 
     return tracks
