@@ -1,7 +1,7 @@
-import classes
+import modules.classes
 import math
 from  random import randint, shuffle
-from classes.movements import movements
+from modules.classes.movements import movements
 
 class createHarmonicMixingPattern:
 #     perfectMatch = 35  # perfectMatch (=)
