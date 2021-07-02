@@ -26,6 +26,8 @@ def getSortTracks(directory):
     # tracks = hardcodeTracks()
     printTracks(tracks)
     [sortedTracks, unsortedTracks] = sortTracks(tracks)
+
+    return sortedTracks
     # print("sorted:")
     # printTracks(sortedTracks)
     
@@ -44,7 +46,7 @@ def getSortTracks(directory):
 #     checkMixing.checkMix("10A", "6A")
 
 
-getSortTracks("./audio")
+# getSortTracks("./audio")
 
 # testSort()
 

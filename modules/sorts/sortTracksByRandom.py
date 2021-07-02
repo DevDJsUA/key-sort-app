@@ -52,9 +52,23 @@ def sortTracksByRandom(tracks):
         tempMixedTracks = []
 
     arrayOfMixing.sort(key=len)
-    for array in arrayOfMixing:
-        print("-------------------")
-        for j in array:
-            print(f" {j.getId()} {j.getKey()}|", end=" ")
-        print("\n--------------")
-    return [arrayOfMixing, []]
+    # for array in arrayOfMixing:
+    #     print("-------------------")
+    #     for j in array:
+    #         print(f" {j.getId()} {j.getKey()}|", end=" ")
+    #     print("\n--------------")
+    
+    sortedMixes = []
+    arrayOfMixing.reverse()
+    maxLenghtOfMix = len(arrayOfMixing[0])
+    print(len(arrayOfMixing[0]))
+    print(len(arrayOfMixing[-1]))
+    for i in arrayOfMixing:
+        if len(i) == maxLenghtOfMix:
+            sortedMixes.append(i)
+            arrayOfMixing.remove(i)
+        else:
+            break 
+
+    return [sortedMixes, arrayOfMixing]
+
