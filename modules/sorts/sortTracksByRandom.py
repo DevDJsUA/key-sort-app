@@ -7,9 +7,13 @@ from random import shuffle
 checkMixing = CheckMixing()
 import configparser
 
+def getSteps():
+    return int(config['sorttracks']['steps'])
+
 config = configparser.ConfigParser()
 config.read("config.ini")
-steps = int(config['sorttracks']['steps'])
+steps = getSteps()
+
 """
 Берем массив треков.
 Создаем локальный, который рандомизируем.
@@ -52,6 +56,7 @@ def sortTracksByRandom(tracks):
         tempMixedTracks = []
 
     arrayOfMixing.sort(key=len)
+    steps = getSteps()
     # for array in arrayOfMixing:
     #     print("-------------------")
     #     for j in array:

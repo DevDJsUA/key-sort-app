@@ -46,7 +46,7 @@ def getSortTracks(directory):
 #     checkMixing.checkMix("10A", "6A")
 
 
-# getSortTracks("./audio")
+getSortTracks("../716720991/")
 
 # testSort()
 
