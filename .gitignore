@@ -2,3 +2,5 @@
 *.wav
 /env
 /audio
+/__pycache__
+log.txt
